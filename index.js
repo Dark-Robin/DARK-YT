@@ -80,8 +80,11 @@ async function connectToWA() {
     const { connection, lastDisconnect } = update;
     if (connection === "close") {
       if (
-        lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut
-      ) {
+        lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) { 
+        console.error("Session is invalid or logged out. Please re-authenticate.");
+        process.exit(1); 
+      } else {
+        console.error("Reconnecting...");
         connectToWA();
       }
     } else if (connection === "open") {
