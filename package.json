@@ -4,9 +4,9 @@
   "description": "A WhatsApp bot created using Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name ROBIN MAX",
-    "stop": "pm2 stop ROBIN MAX",
-    "restart": "pm2 restart ROBIN MAX"
+    "start": "pm2 start index.js --deep-monitoring --attach --name 'ROBIN MAX'",
+    "stop": "pm2 stop 'ROBIN MAX'",
+    "restart": "pm2 restart 'ROBIN MAX'"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.9",
