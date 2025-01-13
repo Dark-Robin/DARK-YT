@@ -61,15 +61,15 @@ async function connectToWA() {
   const prefix = config.PREFIX;
   //===========================
 
-  console.log("Connecting ROBIN MAX");
+  console.log("Connecting ❤️𝐑_𝐎_𝐁_𝐈_𝐍❤️");
   const { state, saveCreds } = await useMultiFileAuthState(
     __dirname + "/auth_info_baileys/"
   );
   var { version } = await fetchLatestBaileysVersion();
 
   const robin = makeWASocket({
-    logger: P({ level: "debug" }),
-    printQRInTerminal: true,
+    logger: P({ level: "silent" }),
+    printQRInTerminal: false,
     browser: Browsers.macOS("Firefox"),
     syncFullHistory: true,
     auth: state,
@@ -80,11 +80,8 @@ async function connectToWA() {
     const { connection, lastDisconnect } = update;
     if (connection === "close") {
       if (
-        lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) { 
-        console.error("Session is invalid or logged out. Please re-authenticate.");
-        process.exit(1); 
-      } else {
-        console.error("Reconnecting...");
+        lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut
+      ) {
         connectToWA();
       }
     } else if (connection === "open") {
@@ -95,11 +92,11 @@ async function connectToWA() {
           require("./plugins/" + plugin);
         }
       });
-      console.log("ROBIN MAX installed successful ✅");
-      console.log("ROBIN MAX connected to whatsapp ✅");
+      console.log("❤️𝐑_𝐎_𝐁_𝐈_𝐍❤️ installed successful ✅");
+      console.log("❤️𝐑_𝐎_𝐁_𝐈_𝐍❤️ connected to whatsapp ✅");
 
-      let up = `ROBIN MAX connected successful ✅`;
-      let up1 = `Hello ROBIN MAX, I made bot successful`;
+      let up = `❤️𝐑_𝐎_𝐁_𝐈_𝐍❤️ connected successful ✅`;
+      let up1 = `Hello Robin, I made bot successful`;
 
       robin.sendMessage(ownerNumber + "@s.whatsapp.net", {
         image: {
@@ -398,7 +395,7 @@ async function connectToWA() {
   });
 }
 app.get("/", (req, res) => {
-  res.send("hey, ROBIN MAX started✅");
+  res.send("hey, ❤️𝐑_𝐎_𝐁_𝐈_𝐍❤️ started✅");
 });
 app.listen(port, () =>
   console.log(`Server listening on port http://localhost:${port}`)
