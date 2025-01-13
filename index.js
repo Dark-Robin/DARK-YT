@@ -68,8 +68,8 @@ async function connectToWA() {
   var { version } = await fetchLatestBaileysVersion();
 
   const robin = makeWASocket({
-    logger: P({ level: "silent" }),
-    printQRInTerminal: false,
+    logger: P({ level: "debug" }),
+    printQRInTerminal: true,
     browser: Browsers.macOS("Firefox"),
     syncFullHistory: true,
     auth: state,
