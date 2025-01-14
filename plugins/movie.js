@@ -12,7 +12,7 @@ cmd(
     desc: "Search movies on sinhalasub and get download links",
     filename: __filename,
   },
-  async (conn, m, mek, { from, isMe, isOwner, q, reply }) => {
+  async (robin, m, mek, { from, isMe, isOwner, q, reply }) => {
     try {
       // Check if search query is provided
       if (!q || q.trim() === "")
