@@ -1,6 +1,7 @@
-const { cmd, commands } = require('../command');
+const { cmd } = require('../command');
 const ytdlp = require('yt-dlp-exec');
 const yts = require('yt-search');
+const path = require('path');
 
 cmd(
     {
@@ -40,11 +41,13 @@ cmd(
 `;
             await robin.sendMessage(from, { image: { url: data.thumbnail }, caption: desc }, { quoted: mek });
 
-            // Download the song using yt-dlp
-            const output = `./downloads/${data.title}.mp3`;
+            // Download the song using yt-dlp with cookies
+            const output = `./downloads/${data.title.replace(/[<>:"/\\|?*]/g, '')}.mp3`; // Sanitize filename
+            const cookiesPath = path.resolve(__dirname, 'cookies.txt'); // Ensure your cookies.txt is in the same directory
             await ytdlp(url, {
                 extractAudio: true,
                 audioFormat: 'mp3',
+                cookies: cookiesPath,
                 output: output,
             });
 
