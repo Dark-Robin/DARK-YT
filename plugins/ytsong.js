@@ -1,7 +1,7 @@
 const { cmd, commands } = require('../command');
 const ytdl = require('ytdl-core'); // Import ytdl-core to handle YouTube downloads
 const yts = require('yt-search'); // Search YouTube videos
-const fs = require('fs'); // File system to save the stream as a file
+const fs = require('fs-extra'); // File system to save the stream as a file
 
 cmd({
     pattern: "song",
