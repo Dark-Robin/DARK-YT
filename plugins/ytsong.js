@@ -1,6 +1,7 @@
 const {cmd , commands} = require('../command')
 const ytdl = require('ytdl-core')
 const yts = require('yt-search')
+const { PassThrough } = require('stream')
 
 cmd({
     pattern: "song", 
@@ -37,9 +38,12 @@ cmd({
 
         // Download song audio using ytdl-core
         const audioStream = ytdl(url, { filter: 'audioonly', quality: 'highestaudio' });
+
+        // Send audio using a PassThrough stream
+        const stream = new PassThrough();
+        audioStream.pipe(stream);
         
-        // Send audio
-        await robin.sendMessage(from, { audio: { url: audioStream }, mimetype: 'audio/mp4' }, { quoted: mek });
+        await robin.sendMessage(from, { audio: { url: stream }, mimetype: 'audio/mp4' }, { quoted: mek });
         
         return robin.sendMessage(from, { text: "*Thanks for using the bot* 🌚❤️" }, {quoted: mek});
 
