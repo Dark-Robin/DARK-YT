@@ -13,10 +13,6 @@ async (robin, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, se
     try {
         if (!q) return reply("*Please provide a valid Facebook video URL!* 🌚❤️");
 
-        const isReact = m.message.reactionMessage ? true : false;
-        if (isReact) return;
-        m.react("📹");
-
         // Validate the Facebook URL format
         const fbRegex = /(https?:\/\/)?(www\.)?(facebook|fb)\.com\/.+/;
         if (!fbRegex.test(q)) return reply("*Invalid Facebook URL! Please check and try again.* 🌚");
@@ -34,9 +30,8 @@ async (robin, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, se
 
         // Prepare and send the message with video details
         let desc = `
-*❤️ ROBIN FB VIDEO DOWNLOADER ❤️*
+*❤️ ROBIN MAX VIDEO DOWNLOADER ❤️*
 
-👻 *Title*: ${title || 'Unknown'}
 👻 *Quality*: ${hd ? 'HD Available' : 'SD Only'}
 
 𝐌𝐚𝐝𝐞 𝐛𝐲 𝐒_𝐈_𝐇_𝐈_𝐋_𝐄_𝐋
