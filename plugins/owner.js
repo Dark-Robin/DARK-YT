@@ -167,7 +167,7 @@ async (robin, mek, m, { from, isGroup, isAdmins, isBotAdmins, reply }) => {
 
 
 cmd({
-    pattern: "add",
+    pattern: "add", // .add 94705900209
     alias: ["invite"],
     react: "➕",
     desc: "Add a user to the group.",
