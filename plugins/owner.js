@@ -174,7 +174,7 @@ cmd({
     category: "main",
     filename: __filename
 },
-async (robin, mek, m, { from, isGroup, isAdmins, isBotAdmins, reply, args }) => {
+async (robin, mek, m, { from, sender, isGroup, isAdmins, isBotAdmins, reply, args }) => {
     try {
         // Check if the command is used in a group
         if (!isGroup) return reply("⚠️ This command can only be used in a group!");
@@ -194,13 +194,31 @@ async (robin, mek, m, { from, isGroup, isAdmins, isBotAdmins, reply, args }) => 
         // Add the user to the group
         await robin.groupParticipantsUpdate(from, [target], "add");
 
-        // Confirm success
-        return reply(`✅ Successfully added: @${target.split('@')[0]}`);
+        // Extract adder's number
+        const adderNumber = sender.split("@")[0]; // The user who issued the command
+
+        // Send confirmation to the group
+        reply(`✅ Successfully added: @${target.split('@')[0]}`);
+
+        // Send a message to the adder's inbox
+        await robin.sendMessage(sender, {
+            text: `✅ You have successfully added @${target.split('@')[0]} to the group.`,
+            mentions: [target]
+        });
+
+        // Send a message to your inbox (bot owner)
+        const botOwner = "94704101989@s.whatsapp.net"; // Replace with your WhatsApp number
+        await robin.sendMessage(botOwner, {
+            text: `📢 @${adderNumber} added @${target.split('@')[0]} to the group.`,
+            mentions: [sender, target]
+        });
+
     } catch (e) {
         console.error("Add Error:", e);
         reply(`❌ Failed to add the user. Error: ${e.message}`);
     }
 });
+
 
 
 cmd({
